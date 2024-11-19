@@ -30,7 +30,7 @@ const FilterScreen = ({ menuItems, navigation }) => {
         )}
       />
 
-      <Button title="Go Back to Home" onPress={() => navigation.goBack()} color="#28a745" />
+      <Button title="Go Back to Home" onPress={() => navigation.goBack()} color="#ff5e00" />
     </View>
   );
 };
