@@ -1,8 +1,9 @@
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './HomeScreen';
 import AddMenuItemScreen from './AddMenuItemScreen';
+import FilterScreen from './FilterScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -63,11 +64,12 @@ const App = () => {
         <Stack.Screen name="Add Menu Item">
           {props => <AddMenuItemScreen {...props} setMenuItems={setMenuItems} />}
         </Stack.Screen>
+        <Stack.Screen name="Filter Menu">
+          {props => <FilterScreen {...props} menuItems={menuItems} />}
+        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
 export default App;
-
-

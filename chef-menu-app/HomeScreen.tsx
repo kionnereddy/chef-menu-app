@@ -21,6 +21,8 @@ const HomeScreen = ({ navigation, menuItems, setMenuItems }) => {
       />
       <Text style={styles.title}>Chef's Menu</Text>
       <Button title="Add Menu Item" onPress={() => navigation.navigate('Add Menu Item')} color="#007BFF" />
+      <Button title="Filter Menu by Course" onPress={() => navigation.navigate('Filter Menu')} color="#28a745" />
+
 
       <FlatList
         data={menuItems}
