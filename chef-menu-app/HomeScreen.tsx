@@ -1,11 +1,15 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button, FlatList, Image } from 'react-native';
+import { StyleSheet, View, Text, Button, FlatList, Image, TouchableOpacity } from 'react-native';
 
 const HomeScreen = ({ navigation, menuItems, setMenuItems }) => {
   const calculateAveragePrice = (course) => {
     const filteredItems = menuItems.filter(item => item.course === course);
     const total = filteredItems.reduce((sum, item) => sum + item.price, 0);
     return filteredItems.length > 0 ? `R${(total / filteredItems.length).toFixed(2)}` : 'N/A';
+  };
+
+  const deleteMenuItem = (id) => {
+    setMenuItems(menuItems.filter(item => item.id !== id));
   };
 
   return (
@@ -27,6 +31,9 @@ const HomeScreen = ({ navigation, menuItems, setMenuItems }) => {
             <Text style={styles.description}>{item.description}</Text>
             <Text style={styles.course}>Course: {item.course}</Text>
             <Text style={styles.price}>Price: R{item.price.toFixed(2)}</Text>
+            <TouchableOpacity onPress={() => deleteMenuItem(item.id)} style={styles.deleteButton}>
+              <Text style={styles.deleteButtonText}>Delete</Text>
+            </TouchableOpacity>
           </View>
         )}
       />
@@ -64,6 +71,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 1 },
     shadowRadius: 1,
+    position: 'relative',
   },
   dishName: {
     fontSize: 20,
@@ -102,7 +110,20 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 20,
   },
-  
+  deleteButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    backgroundColor: '#dc3545',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+  },
+  deleteButtonText: {
+    color: '#ffffff',
+    fontWeight: 'bold',
+  },
 });
 
 export default HomeScreen;
+
